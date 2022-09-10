@@ -66,7 +66,7 @@ const handleChange=(event) =>{
         {details.course ? <div><span className="fw-bold">Course: </span>{`${details.course}`}</div> :"" }
         {details.hasOwnProperty('mentor') ? <div><span className="fw-bold">Mentor: </span>{`${details.mentor}`}</div> :"" }
 
-        {details.name ? <ShowMentors mentors={mentors} student={details._id} /> :""}
+        {details.name ? <ShowMentors mentors={mentors} student={details._id} studentDetails={details} /> :""}
         
       </div>
     </div>
@@ -75,7 +75,7 @@ const handleChange=(event) =>{
 // ***************
 
 //dropdown to display all mentors
-function ShowMentors({mentors,student}){
+function ShowMentors({mentors,student,studentDetails}){
 
   let navigate=useNavigate();
   let[show,setShow] = useState(false);
@@ -92,16 +92,50 @@ function ShowMentors({mentors,student}){
             let res = mentors.filter((obj2) => {
               return (obj2._id.toString() === obj.mentor)
             })
+
         
-          let arr= res[0].students_list;
-          arr.push(student);
+          // let arr= res[0].students_list;
+          // arr.push(student);
+          let arr= res[0];
+          if(arr.hasOwnProperty("students_list")){
           
+            arr= res[0].students_list;
+            arr.push(student);
+          }
+          else{
+           arr["students_list"] = [];
+            arr= res[0].students_list;
+            arr.push(student);
+          }
+         
 
           //student object to pass in assign-student fetch call
           let student_result = {
             'students_list':arr
           }
            
+          let prevMentorId ="";
+          
+
+          //while changing mentor for a student
+          //edit the student list of the previous mentor
+          if(studentDetails.hasOwnProperty(`mentor`)){
+            prevMentorId = studentDetails.mentor;
+            let prevMentorDetails = mentors.filter((obj) => obj._id===prevMentorId);
+            let prevMentorStudentDetails = prevMentorDetails[0].students_list;
+            let filter= prevMentorStudentDetails.filter((item) => item !== student);
+            
+            let filteredStudents ={
+               'students_list':filter
+            }
+
+           //edit the student list of previous mentor
+            fetch(`${API}/assign-students/${prevMentorId}`,{
+                method:"PUT",
+                body:JSON.stringify(filteredStudents),
+                headers:{"content-type":"application/json"},
+            })
+          }
 
           //assign the mentor to the selected student
             fetch(`${API}/assign-mentor/${student}`,{

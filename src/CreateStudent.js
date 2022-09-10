@@ -37,7 +37,7 @@ export function CreateStudent() {
     <div className="container-lg mt-4">
       <h3 className="mb-4">Create student Form</h3>
       <form className="create-student-form d-flex flex-column gap-4 mt-5 mb-5 w-75 m-auto" onSubmit={formik.handleSubmit}>
-        <input type="text" id="name" name="name" placeholder="Name" className="form-control" value={formik.values.name} onChange={formik.handleChange}></input>
+        <input type="text" id="name" name="name" placeholder="Name" className="form-control" value={formik.values.name} onChange={formik.handleChange} required></input>
 
         <div className="profile d-flex gap-3">
           <label className="fw-bold text-start">Profile: </label>
@@ -52,7 +52,7 @@ export function CreateStudent() {
           </div>
         </div>
 
-        <input type="text" id="batch" name="batch" placeholder="Batch" className="form-control" value={formik.values.batch} onChange={formik.handleChange}></input>
+        <input type="text" id="batch" name="batch" placeholder="Batch" className="form-control" value={formik.values.batch} onChange={formik.handleChange} required></input>
 
         <div className="week d-flex gap-3">
           <label className="fw-bold text-start">Week: </label>
@@ -76,9 +76,9 @@ export function CreateStudent() {
           <option value="html css">HTML,CSS</option>
         </select>
 
-        <input type="text" id="email" name="email" placeholder="Email ID" className="form-control" value={formik.values.email} onChange={formik.handleChange}></input>
+        <input type="text" id="email" name="email" placeholder="Email ID" className="form-control" value={formik.values.email} onChange={formik.handleChange} required></input>
 
-        <input type="text" id="mobile" name="mobile" placeholder="Mobile Number" className="form-control" value={formik.values.mobile} onChange={formik.handleChange}></input>
+        <input type="text" id="mobile" name="mobile" placeholder="Mobile Number" className="form-control" value={formik.values.mobile} onChange={formik.handleChange} required></input>
 
         <div className="d-flex flex-column gap-2 align-items-center">
           <button className="btn btn-warning col-lg-3" type="submit">Create</button>

@@ -39,13 +39,13 @@ export function CreateMentor() {
     <div className="container-lg mt-4">
       <h3 className="mb-4">Create Mentor Form</h3>
       <form className="create-mentor-form d-flex flex-column gap-4 mt-5 mb-5 w-75 m-auto" onSubmit={formik.handleSubmit}>
-        <input type="text" id="name" name="name" placeholder="Name" className="form-control" value={formik.values.name} onChange={formik.handleChange}></input>
+        <input type="text" id="name" name="name" placeholder="Name" className="form-control" value={formik.values.name} onChange={formik.handleChange} required></input>
 
         {/* checkbox for topics assuming one mentor can take more than 1 topic */}
         <div role="group" className="topics d-flex flex-column align-items-start gap-3">
           <label className="fw-bold text-start">Topics: </label>
           <div className="form-check">
-            <input className="form-check-input" type="checkbox" id="JAVASCRIPT" name="topics" value="Javascript" onChange={formik.handleChange}></input>
+            <input className="form-check-input" type="checkbox" id="JAVASCRIPT" name="topics" value="Javascript" onChange={formik.handleChange} ></input>
             <label className="form-check-label" htmlFor="javascript">Javascript</label>
           </div>
 
@@ -95,11 +95,11 @@ export function CreateMentor() {
           </div>
         </div>
 
-        <input type="text" id="qualification" name="qualification" placeholder="Qualification" className="form-control" value={formik.values.qualification} onChange={formik.handleChange}></input>
+        <input type="text" id="qualification" name="qualification" placeholder="Qualification" className="form-control" value={formik.values.qualification} onChange={formik.handleChange} required></input>
 
-        <input type="email" id="email" name="email" placeholder="Email ID" className="form-control" value={formik.values.email} onChange={formik.handleChange}></input>
+        <input type="email" id="email" name="email" placeholder="Email ID" className="form-control" value={formik.values.email} onChange={formik.handleChange} required></input>
 
-        <input type="text" id="mobile" name="mobile" placeholder="Mobile Number" className="form-control" value={formik.values.mobile} onChange={formik.handleChange}></input>
+        <input type="text" id="mobile" name="mobile" placeholder="Mobile Number" className="form-control" value={formik.values.mobile} onChange={formik.handleChange} required></input>
 
         <div className="d-flex flex-column gap-2 align-items-center">
           <button className="btn btn-warning col-lg-3" type="submit">Create</button>
