@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
+import {API} from "./global.js";
 
 //assign student dropdown
 //dropdown will filter students who has not been assigned any mentor yet
@@ -15,7 +16,7 @@ export function ShowStudents({ students, mentor }) {
     initialValues: { students_list: [] },
     onSubmit: (values) => {
       //api call to assign students to mentor to metor record
-      fetch(`http://127.0.0.1:4300/assign-students/${mentor}`, {
+      fetch(`${API}/assign-students/${mentor}`, {
         method: "PUT",
         body: JSON.stringify(values),
         headers: { "content-type": "application/json" },
@@ -37,7 +38,7 @@ export function ShowStudents({ students, mentor }) {
         let obj = {
           'mentor': mentor
         };
-        fetch(`http://127.0.0.1:4300/assign-mentor/${student}`, {
+        fetch(`${API}/assign-mentor/${student}`, {
           method: "PUT",
           body: JSON.stringify(obj),
           headers: { "content-type": "application/json" },

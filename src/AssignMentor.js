@@ -9,6 +9,7 @@ import {Modal} from 'react-bootstrap';
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import {useNavigate} from "react-router-dom";
+import {API} from "./global.js";
 
 // **********
 export function AssignMentor(){
@@ -20,13 +21,13 @@ export function AssignMentor(){
   let[mentors,setMentors] = useState([]);
 
   useEffect(() =>{
-    fetch("http://127.0.0.1:4300/students")
+    fetch(`${API}/students`)
     .then(response => response.json())
     .then(data =>{
       setStudents(data);
     })
 
-    fetch("http://127.0.0.1:4300/mentors")
+    fetch(`${API}/mentors`)
     .then(response => response.json())
     .then(data =>{
       setMentors(data);
@@ -40,7 +41,7 @@ const handleChange=(event) =>{
  
  //fetch the record of particular student
  if(id !== "selectStudent"){
-    fetch(`http://127.0.0.1:4300/student/${id}`)
+    fetch(`${API}/student/${id}`)
 .then(response => response.json())
 .then(data =>{
     setDetails(data);
@@ -103,7 +104,7 @@ function ShowMentors({mentors,student}){
            
 
           //assign the mentor to the selected student
-            fetch(`http://127.0.0.1:4300/assign-mentor/${student}`,{
+            fetch(`${API}/assign-mentor/${student}`,{
                 method:"PUT",
                 body:JSON.stringify(obj),
                 headers:{"content-type":"application/json"},
@@ -121,7 +122,7 @@ function ShowMentors({mentors,student}){
             })
 
             //add the student to the mentor's students list
-            fetch(`http://127.0.0.1:4300/assign-students/${obj.mentor}`,{
+            fetch(`${API}/assign-students/${obj.mentor}`,{
                 method:"PUT",
                 body:JSON.stringify(student_result),
                 headers:{"content-type":"application/json"},

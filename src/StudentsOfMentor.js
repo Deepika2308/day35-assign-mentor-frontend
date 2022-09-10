@@ -1,5 +1,5 @@
 import { useEffect,useState } from "react";
-
+import {API} from "./global.js";
 
 //to list all students under a mentor
 function ShowStudentsOfMentor(){
@@ -9,7 +9,7 @@ function ShowStudentsOfMentor(){
 
     //api call to fetch all mentors and display in dropdown
     useEffect(() => {
-        fetch("http://127.0.0.1:4300/mentors")
+        fetch(`${API}/mentors`)
         .then(response => response.json())
         .then(data => {
             setMentors(data);
@@ -28,7 +28,7 @@ const onSubmit = (e)=>{
     e.preventDefault();
    
      //call api to get students under a mentor and set to setNamesList array
-    fetch(`http://127.0.0.1:4300/showStudentsOfMentor/${selectedMentorId}`)
+    fetch(`${API}/showStudentsOfMentor/${selectedMentorId}`)
     .then(response => response.json())
     .then(data => setNamesList(data.students_list));
 }

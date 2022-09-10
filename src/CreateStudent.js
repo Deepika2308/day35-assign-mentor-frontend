@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { Modal } from 'react-bootstrap';
+import {API} from "./global.js";
 
 // creating student form
 export function CreateStudent() {
@@ -13,7 +14,7 @@ export function CreateStudent() {
   let formik = useFormik({
     initialValues: { name: "", profile: "", batch: "", week: "", course: "", email: "", mobile: "" },
     onSubmit: (values) => {
-      fetch("http://127.0.0.1:4300/create-student", {
+      fetch(`${API}/create-student`, {
         method: "POST",
         body: JSON.stringify(values),
         headers: { "content-type": "application/json" },

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Topics } from './Topics';
 import { Languages } from './Languages';
 import { ShowStudents } from './ShowStudents';
+import {API} from "./global.js";
 
 //assign students to mentor form
 export function AssignStudents() {
@@ -20,7 +21,7 @@ export function AssignStudents() {
 
     // get the topics and languages of a particular mentor
     if (mentor_id !== "selectMentor") {
-      fetch(`http://127.0.0.1:4300/mentor/${mentor_id}`)
+      fetch(`${API}/mentor/${mentor_id}`)
         .then(response => response.json())
         .then(data => {
           setTopics(data.topics);
@@ -33,14 +34,14 @@ export function AssignStudents() {
 
 
   useEffect(() => {
-    fetch("http://127.0.0.1:4300/mentors")
+    fetch(`${API}/mentors`)
       .then(response => response.json())
       .then(data => {
         setMentors(data);
       });
 
     //filter students who has not been assigned any mentor yet
-    fetch("http://127.0.0.1:4300/students")
+    fetch(`${API}/students`)
       .then(response => response.json())
       .then(data => {
         let filteredStudents = data.filter((obj) => {

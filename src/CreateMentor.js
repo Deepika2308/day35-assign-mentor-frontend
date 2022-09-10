@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { Modal } from 'react-bootstrap';
+import {API} from "./global.js";
 
 export function CreateMentor() {
 
@@ -13,7 +14,7 @@ export function CreateMentor() {
     initialValues: { name: "", topics: [], languages: [], qualification: "", email: "", mobile: "" },
     onSubmit: (values) => {
       //  calling api to store mentor details into db
-      fetch("http://127.0.0.1:4300/create-mentor", {
+      fetch(`${API}/create-mentor`, {
         method: "POST",
         body: JSON.stringify(values),
         headers: { "content-type": "application/json" },
