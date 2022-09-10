@@ -14,7 +14,6 @@ export function ShowStudents({ students, mentor }) {
   let formik = useFormik({
     initialValues: { students_list: [] },
     onSubmit: (values) => {
-      console.log(values);
       //api call to assign students to mentor to metor record
       fetch(`http://127.0.0.1:4300/assign-students/${mentor}`, {
         method: "PUT",

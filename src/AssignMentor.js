@@ -92,7 +92,6 @@ function ShowMentors({mentors,student}){
               return (obj2._id.toString() === obj.mentor)
             })
         
-          // console.log(res[0].students_list);
           let arr= res[0].students_list;
           arr.push(student);
           
@@ -101,8 +100,6 @@ function ShowMentors({mentors,student}){
           let student_result = {
             'students_list':arr
           }
-
-          console.log(student_result);
            
 
           //assign the mentor to the selected student

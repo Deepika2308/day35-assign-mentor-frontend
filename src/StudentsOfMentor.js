@@ -1,12 +1,13 @@
 import { useEffect,useState } from "react";
 
 
+//to list all students under a mentor
 function ShowStudentsOfMentor(){
     let[mentors,setMentors] = useState([]);
-    let[selectId,setSelectId]=useState("select mentor");
+    let[selectedMentorId,setSelectedMentorId]=useState("select mentor");
     let[namesList,setNamesList] =useState([]);
-    let[result,setResult] = useState([]);
 
+    //api call to fetch all mentors and display in dropdown
     useEffect(() => {
         fetch("http://127.0.0.1:4300/mentors")
         .then(response => response.json())
@@ -18,28 +19,18 @@ function ShowStudentsOfMentor(){
     function handleChange(event){
        
         let id= event.nativeEvent.target.selectedOptions[0].value;
-        console.log(id);
-        setSelectId(id);
+        setSelectedMentorId(id);
     }
 
-    const onSubmit = (e)=>{
-        setNamesList([]);
-        e.preventDefault();
-        let names=[];
 
-        //  mentors.map((item) => {
-        //     if(item._id.toString() === selectId){
-        //         names = item.students_list;
-        //         setNamesList(names);
-        //     }
-        // })
-
-        mentors.map((item) => {
-            if(item._id.toString() === selectId){
-                names = item.students_list;
-                setNamesList(names);
-            }
-        })
+const onSubmit = (e)=>{
+    setNamesList([]);
+    e.preventDefault();
+   
+     //call api to get students under a mentor and set to setNamesList array
+    fetch(`http://127.0.0.1:4300/showStudentsOfMentor/${selectedMentorId}`)
+    .then(response => response.json())
+    .then(data => setNamesList(data.students_list));
 }
 
 
@@ -48,7 +39,7 @@ function ShowStudentsOfMentor(){
 
             <div className="d-flex">
             <div className="fw-bold mt-1">See Students for:</div>
-            <div><select className="form-select mx-3" id="mentor" name="mentor" value={selectId} onChange={handleChange}>
+            <div><select className="form-select mx-3" id="mentor" name="mentor" value={selectedMentorId} onChange={handleChange}>
                 <option value="select mentor">Select Mentor</option>
                 {mentors.map((mentor,index) => {
                     return <option value={mentor._id} key={index}>{`${mentor.name}`}</option>
@@ -59,9 +50,10 @@ function ShowStudentsOfMentor(){
                 <button className="get-students btn btn-primary" type="submit">Get Students</button>
             </div></div>
             </div>
+
            
 
-            {namesList? <div className="mt-5 d-flex flex-column align-items-start">
+            {namesList.length !== 0? <div className="mt-5 d-flex flex-column align-items-start"> <div className="fw-bold">Students' Id:</div>
             {namesList.map((name,index) => {
                     return <li key={index}>{`${name}`}</li>
                 })}

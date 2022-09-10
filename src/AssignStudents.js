@@ -17,7 +17,6 @@ export function AssignStudents() {
     setLanguages([]);
     let mentor_id = event.nativeEvent.target.selectedOptions[0].value;
     setMentor(mentor_id);
-    console.log(mentor_id);
 
     // get the topics and languages of a particular mentor
     if (mentor_id !== "selectMentor") {
@@ -44,12 +43,9 @@ export function AssignStudents() {
     fetch("http://127.0.0.1:4300/students")
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         let filteredStudents = data.filter((obj) => {
           return !obj.hasOwnProperty('mentor');
         });
-
-        console.log(filteredStudents);
         setStudents(filteredStudents);
       });
 
