@@ -51,9 +51,7 @@ const onSubmit = (e)=>{
             </div></div>
             </div>
 
-           
-
-            {namesList.length !== 0 || namesList !== "undefined" ? <div className="mt-5 d-flex flex-column align-items-start"> <div className="fw-bold">Students' Id:</div>
+            { namesList ? <div className="mt-5 d-flex flex-column align-items-start"> <div className="fw-bold">Students' Id:</div>
             {namesList.map((name,index) => {
                     return <li key={index}>{`${name}`}</li>
                 })}
