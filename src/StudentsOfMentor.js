@@ -59,8 +59,6 @@ const onSubmit = (e)=>{
                 })}
             </div>:<div className="d-flex mt-5 justify-content-start">No Student Assigned</div>}
             
-            
-            
         </form>
     )
 }
