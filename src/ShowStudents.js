@@ -16,7 +16,7 @@ export function ShowStudents({ students, mentor }) {
     initialValues: { students_list: [] },
     onSubmit: (values) => {
       //api call to assign students to mentor to metor record
-      fetch(`${API}/assign-students/${mentor}`, {
+      fetch(`${API}/assign/assign-students/${mentor}`, {
         method: "PUT",
         body: JSON.stringify(values),
         headers: { "content-type": "application/json" },
@@ -38,7 +38,7 @@ export function ShowStudents({ students, mentor }) {
         let obj = {
           'mentor': mentor
         };
-        fetch(`${API}/assign-mentor/${student}`, {
+        fetch(`${API}/assign/assign-mentor/${student}`, {
           method: "PUT",
           body: JSON.stringify(obj),
           headers: { "content-type": "application/json" },

@@ -14,7 +14,7 @@ export function CreateStudent() {
   let formik = useFormik({
     initialValues: { name: "", profile: "", batch: "", week: "", course: "", email: "", mobile: "" },
     onSubmit: (values) => {
-      fetch(`${API}/create-student`, {
+      fetch(`${API}/create/create-student`, {
         method: "POST",
         body: JSON.stringify(values),
         headers: { "content-type": "application/json" },

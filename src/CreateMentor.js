@@ -14,7 +14,7 @@ export function CreateMentor() {
     initialValues: { name: "", topics: [], languages: [], qualification: "", email: "", mobile: "" },
     onSubmit: (values) => {
       //  calling api to store mentor details into db
-      fetch(`${API}/create-mentor`, {
+      fetch(`${API}/create/create-mentor`, {
         method: "POST",
         body: JSON.stringify(values),
         headers: { "content-type": "application/json" },

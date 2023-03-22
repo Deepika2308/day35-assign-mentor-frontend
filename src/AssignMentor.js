@@ -130,7 +130,7 @@ function ShowMentors({mentors,student,studentDetails}){
             }
 
            //edit the student list of previous mentor
-            fetch(`${API}/assign-students/${prevMentorId}`,{
+            fetch(`${API}/assign/assign-students/${prevMentorId}`,{
                 method:"PUT",
                 body:JSON.stringify(filteredStudents),
                 headers:{"content-type":"application/json"},
@@ -138,7 +138,7 @@ function ShowMentors({mentors,student,studentDetails}){
           }
 
           //assign the mentor to the selected student
-            fetch(`${API}/assign-mentor/${student}`,{
+            fetch(`${API}/assign/assign-mentor/${student}`,{
                 method:"PUT",
                 body:JSON.stringify(obj),
                 headers:{"content-type":"application/json"},
@@ -156,7 +156,7 @@ function ShowMentors({mentors,student,studentDetails}){
             })
 
             //add the student to the mentor's students list
-            fetch(`${API}/assign-students/${obj.mentor}`,{
+            fetch(`${API}/assign/assign-students/${obj.mentor}`,{
                 method:"PUT",
                 body:JSON.stringify(student_result),
                 headers:{"content-type":"application/json"},

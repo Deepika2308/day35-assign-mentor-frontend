@@ -1,1 +1,1 @@
-export const API ="https://day35assignmentor.herokuapp.com";
+export const API ="https://day35-assign-mentor-backend.vercel.app";

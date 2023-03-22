@@ -18,10 +18,10 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<><Header /><ShowStudentsOfMentor /></>}></Route>
-        <Route path="/create-mentor" element={<><Header /><CreateMentor /></>}></Route>
-        <Route path="/create-student" element={<><Header /><CreateStudent /></>}></Route>
-        <Route path="/assign-students" element={<><Header /><AssignStudents /></>}></Route>
-        <Route path="/assign-mentor" element={<><Header /><AssignMentor /></>}></Route>
+        <Route path="/create/create-mentor" element={<><Header /><CreateMentor /></>}></Route>
+        <Route path="/create/create-student" element={<><Header /><CreateStudent /></>}></Route>
+        <Route path="/assign/assign-students" element={<><Header /><AssignStudents /></>}></Route>
+        <Route path="/assign/assign-mentor" element={<><Header /><AssignMentor /></>}></Route>
       </Routes>
       </BrowserRouter>
     </div>
@@ -39,16 +39,16 @@ function Header(){
         <div className="collapse navbar-collapse justify-content-center" id="navbarHead">
           <ul className="navbar-nav d-lg-flex gap-3">
             <li className="nav-item">
-              <Link className="nav-link" to="/create-student">Create Student</Link>
+              <Link className="nav-link" to="/create/create-student">Create Student</Link>
             </li>
             <li className="nav-item">
-            <Link className="nav-link" to="/create-mentor">Create Mentor</Link>
+            <Link className="nav-link" to="/create/create-mentor">Create Mentor</Link>
             </li>
             <li className="nav-item">
-            <Link className="nav-link" to="/assign-students">Assign Students</Link>
+            <Link className="nav-link" to="/assign/assign-students">Assign Students</Link>
             </li>
             <li className="nav-item">
-            <Link className="nav-link" to="/assign-mentor">Assign Mentor</Link>
+            <Link className="nav-link" to="/assign/assign-mentor">Assign Mentor</Link>
             </li>
           </ul>
         </div>
