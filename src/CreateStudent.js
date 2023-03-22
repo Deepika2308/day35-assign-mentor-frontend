@@ -12,7 +12,7 @@ export function CreateStudent() {
   let navigate = useNavigate();
 
   let formik = useFormik({
-    initialValues: { name: "", profile: "", batch: "", week: "", course: "", email: "", mobile: "" },
+    initialValues: { name: "", profile: "", batch: "", week: "", course: "javascript", email: "", mobile: "" },
     onSubmit: (values) => {
       fetch(`${API}/create/create-student`, {
         method: "POST",
